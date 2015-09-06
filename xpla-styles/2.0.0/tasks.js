@@ -1,10 +1,8 @@
-(function() {
+(function () {
   var currentTask = 0;
   var currentRanking = {};
-  var sendDone = function() {};
+  var sendDone = function () {};
 
-
-  injectStyles();
   // Add embed class
   if (window.location.search.indexOf('embed') > 0) {
     var match = /task=(\d+)/.exec(window.location.search);
@@ -13,14 +11,14 @@
   }
 
   // Functions
-  function changeTask(no) {
+  function changeTask (no) {
     var newTask = no;
     var max = $$('section').length;
     if (newTask >= max) {
       newTask = max - 1;
     }
 
-    function swapActive($els) {
+    function swapActive ($els) {
       if (!$els.length) {
         return;
       }
@@ -46,8 +44,7 @@
     }
   }
 
-
-  function createEmbedMode(taskNo) {
+  function createEmbedMode (taskNo) {
     $('html').classList.add('embed');
 
     if (taskNo !== null) {
@@ -62,11 +59,11 @@
     changeTask(0);
   }
 
-  function createRankingListeners() {
+  function createRankingListeners () {
     var parentIdx = window.location.search.indexOf('url=');
     var url = parentIdx !== -1 ? window.location.search.substr(parentIdx + 4) : window.location.toString();
 
-    window.addEventListener('message', function(msg) {
+    window.addEventListener('message', function (msg) {
 
       try {
         var rank = JSON.parse(msg.data);
@@ -81,7 +78,7 @@
       createEmbedNavigation();
     });
 
-    sendDone = function(currentTask, isDone) {
+    sendDone = function (currentTask, isDone) {
       var msg = {
         currentTask: currentTask,
         isDone: isDone,
@@ -95,9 +92,9 @@
     };
   }
 
-  function getTitle($s) {
+  function getTitle ($s) {
     var check = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', '.title'];
-    return check.reduce(function(found, sel) {
+    return check.reduce(function (found, sel) {
       if (found) {
         return found;
       }
@@ -108,20 +105,20 @@
     }, false) || '';
   }
 
-  function removePreviousNav() {
+  function removePreviousNav () {
     var $x = $('nav.tasks-nav');
     if ($x) {
       $x.parentNode.removeChild($x);
     }
   }
 
-  function createEmbedNavigation() {
+  function createEmbedNavigation () {
     removePreviousNav();
     var $sections = $$('section');
     var $nav = $el('nav.tasks-nav');
     $('.container').appendChild($nav);
 
-    [].map.call($sections, function($s, idx) {
+    [].map.call($sections, function ($s, idx) {
 
       var $li = $el('li.tasks-nav-item');
       var taskIdx = currentRanking.iterationIdx + '_' + idx;
@@ -134,7 +131,7 @@
       $item.title = getTitle($s);
       $item.innerHTML = '&lowast;';
       return $li;
-    }).map(function($el) {
+    }).map(function ($el) {
       $nav.appendChild($el);
     });
 
@@ -142,7 +139,7 @@
     changeTask(currentTask);
   }
 
-  function createEmbedUtils() {
+  function createEmbedUtils () {
     var $btnDone = $el('button.btn.btn-primary.btn-sm.nav-done');
     var $btnNewWindow = $el('a.btn.btn-link.btn-xs.nav-new-window');
     var $firstChild = $('.container > *:first-child');
@@ -152,7 +149,7 @@
 
     $btnDone.innerHTML = 'Done';
 
-    $btnDone.addEventListener('click', function() {
+    $btnDone.addEventListener('click', function () {
       var taskIdx = currentRanking.iterationIdx + '_' + currentTask;
       var isDone = currentRanking[taskIdx] ? !currentRanking[taskIdx].isDone : true;
       try {
@@ -170,41 +167,16 @@
     $btnNewWindow.href = window.location.toString().replace(/\?.*/, '');
   }
 
-  function findStylesUrl() {
-    var scripts = $$('script');
-    return [].reduce.call(scripts, function(found, script) {
-      if (found) {
-        return found;
-      }
-      var src = script.getAttribute('src');
-      if (src.indexOf('tasks.js') !== -1) {
-        return src.replace('tasks.js', 'styles.css');
-      }
-    }, false) || 'styles.css';
-  }
-
-  function injectStyles() {
-    var styles = $el('link');
-    styles.rel = 'stylesheet';
-    styles.href = findStylesUrl();
-    $('head').appendChild(styles);
-  }
-
-
   // Utils
-  function $(sel) {
+  function $ (sel) {
     return document.querySelector(sel);
   }
 
-  function $$(sel) {
+  function $$ (sel) {
     return document.querySelectorAll(sel);
   }
 
-  function $text(text) {
-    return document.createTextNode(text);
-  }
-
-  function $el(name) {
+  function $el (name) {
     var parts = name.split('.');
     var tagName = parts[0];
     var el = document.createElement(tagName);

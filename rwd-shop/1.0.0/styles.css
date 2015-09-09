@@ -7,12 +7,14 @@ html, body {
   width: 90vw;
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
 }
 .asset {
-  flex: 1 1 300px;
+  flex: 1 1 200px;
   margin: 20px;
   padding: 2rem;
   border-bottom: 1px solid #eee;
+  max-width: 400px;
 }
 .asset img {
   width: 100%;

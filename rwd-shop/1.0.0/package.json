@@ -1,0 +1,17 @@
+{
+  "name": "assets-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "generate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "glob": "^5.0.14",
+    "imagemagick": "^0.1.3",
+    "lodash": "^3.10.1",
+    "q": "^1.4.1"
+  }
+}

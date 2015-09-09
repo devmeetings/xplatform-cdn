@@ -40,7 +40,7 @@ glob(path.join(cwd, '*.jpg'), function (err, files) {
       var baseFileName = path.join(assets, name + ext);
       var baseFileName2x = path.join(assets, name + '_2x' + ext);
 
-      return Q.ninvoke(im, 'convert', [file, '-quality', '90', 'resize', '800x', file]).then(function () {
+      return Q.ninvoke(im, 'convert', [file, '-quality', '90', '-resize', '800x', file]).then(function () {
         return Q.all([
           Q.ninvoke(im, 'convert', [file, '-quality', '90', '-resize', '250x', baseFileName]),
           Q.ninvoke(im, 'convert', [file, '-quality', '90', '-resize', '500x', baseFileName2x])

@@ -17,6 +17,7 @@ var htmlEnd = '</div></body></html>';
 var buildAsset = function (asset) {
   return [
     '<div class="asset">',
+    '<h3>' + asset.name + '</h3>',
     '<img src="' + asset.path + '">',
     '<label>1x</label>',
     '<input type="text" readonly value="' + asset.url + '">',
@@ -45,6 +46,7 @@ glob(path.join(cwd, '*.jpg'), function (err, files) {
           Q.ninvoke(im, 'convert', [file, '-quality', '90', '-resize', '500x', baseFileName2x])
         ]).then(function (all) {
           return {
+            name: name,
             path: baseFileName,
             url: baseUrl + baseFileName,
             url2x: baseUrl + baseFileName2x

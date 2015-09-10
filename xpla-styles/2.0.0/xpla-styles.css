@@ -8195,3 +8195,9 @@ body {
   text-decoration: none;
   opacity: 1.0;
 }
+.images {
+  text-align: center;
+  margin: 1.5rem auto 3rem;
+  max-width: 500px;
+}
+

@@ -18,7 +18,7 @@ var buildAsset = function (asset) {
   return [
     '<div class="asset">',
     '<h3>' + asset.name + '</h3>',
-    '<img src="' + asset.path + '">',
+    '<div class="img"><img src="' + asset.path + '"></div>',
     '<label>1x</label>',
     '<input type="text" readonly value="' + asset.url + '">',
     '<label>2x</label>',

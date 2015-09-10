@@ -16,19 +16,24 @@ html, body {
   border-bottom: 1px solid #eee;
   max-width: 400px;
 }
+.asset .img {
+  max-height: 250px;
+  overflow: auto;;
+}
 .asset img {
   width: 100%;
   display: block;
 }
 .asset label {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
   display: block;
   font-weight: bold;
 }
 .asset input {
   width: 100%;
   display: block;
-  padding: 10px;
+  padding: 3px 6px;
   border-radius: 3px;
-  border: 1px solid #444;
+  border: 1px solid #777;
 }
